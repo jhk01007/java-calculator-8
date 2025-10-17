@@ -41,18 +41,18 @@ class DelimiterParserTest {
         assertThat(result.isPresent()).isFalse();
     }
 
-    @Test
-    @DisplayName("커스텀 구분자가 마침표(.)인 경우 에러가 발생한다.")
-    public void parseCustomDelimiter_fail_1() throws Exception {
-        // given
-        String input = "//.\\n1:2,3";
-
-        // when // then
-        assertThatThrownBy(() -> delimiterParser.parseCustomDelimiter(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("커스텀 구분자로 마침표(.)은 사용할 수 없습니다.");
-
-    }
+//    @Test
+//    @DisplayName("커스텀 구분자가 마침표(.)인 경우 에러가 발생한다.")
+//    public void parseCustomDelimiter_fail_1() throws Exception {
+//        // given
+//        String input = "//.\\n1:2,3";
+//
+//        // when // then
+//        assertThatThrownBy(() -> delimiterParser.parseCustomDelimiter(input))
+//                .isInstanceOf(IllegalArgumentException.class)
+//                .hasMessage("커스텀 구분자로 마침표(.)은 사용할 수 없습니다.");
+//
+//    }
 
 
     @Test

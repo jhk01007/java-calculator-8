@@ -21,7 +21,7 @@ public class DelimiterParser {
             String customDelimiter = str.substring(2, str.indexOf("\\n")); // 커스텀 구분자 추출
 
             validateCustomDelimiterIsNotNumber(customDelimiter); // 커스텀 구분자가 숫자인지 검증
-            validateCustomDelimiterIsNotDot(customDelimiter); // 커스텀 구분자가 마침표(.)인지 검증
+//            validateCustomDelimiterIsNotDot(customDelimiter); // 커스텀 구분자가 마침표(.)인지 검증
 
             return Optional.of(customDelimiter);
         } else {
@@ -39,15 +39,15 @@ public class DelimiterParser {
                 str.substring(str.indexOf("\\n") + 2) : str;
     }
 
-    /**
-     * 커스텀 구분자가 마침표(.)이 아닌지 검증
-     * @param customDelimiter - 커스텀 구분자
-     */
-    private void validateCustomDelimiterIsNotDot(String customDelimiter) {
-        if (customDelimiter.equals(".")) {
-            throw new IllegalArgumentException("커스텀 구분자로 마침표(.)은 사용할 수 없습니다.");
-        }
-    }
+//    /**
+//     * 커스텀 구분자가 마침표(.)이 아닌지 검증
+//     * @param customDelimiter - 커스텀 구분자
+//     */
+//    private void validateCustomDelimiterIsNotDot(String customDelimiter) {
+//        if (customDelimiter.equals(".")) {
+//            throw new IllegalArgumentException("커스텀 구분자로 마침표(.)은 사용할 수 없습니다.");
+//        }
+//    }
 
     /**
      * 커스텀 구분자가 숫자가 아닌지 검증
