@@ -10,9 +10,9 @@ public class Application {
 
         // 계산
         StringSumCalculator stringSumCalculator = new StringSumCalculator();
-        double result = stringSumCalculator.calculate(input);
+        int result = stringSumCalculator.calculate(input);
 
         // 출력
-        System.out.printf("결과 : %f\n", result);
+        System.out.printf("결과 : %d\n", result);
     }
 }

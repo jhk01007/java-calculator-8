@@ -46,6 +46,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("커스텀 구분자로 '\\n' 사용")
+    void test_success_5() {
+        assertSimpleTest(() -> {
+            run("//\\n\\n1\\n2");
+            assertThat(output()).contains("결과 : 3");
+        });
+    }
+
+    @Test
     void test_fail_1() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("-1,2,3"))

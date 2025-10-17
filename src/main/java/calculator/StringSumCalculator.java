@@ -22,7 +22,7 @@ public class StringSumCalculator {
      * @param input: 계산할 문자열
      * @return 계산결과
      */
-    public double calculate(String input) {
+    public int calculate(String input) {
 
         if (input == null || input.isBlank()) { // 값이 아무것도 들어오지 않는다면 0 반환
             return 0;
@@ -36,11 +36,11 @@ public class StringSumCalculator {
             delimiters.add(customDelimiter.get()); // 커스텀 구분자 추가
         }
 
-        List<Double> numbers = numberParser.parseNumbers(input, delimiters); // 숫자만 추출
+        List<Integer> numbers = numberParser.parseNumbers(input, delimiters); // 숫자만 추출
 
         // 계산
-        double total = 0;
-        for (Double number : numbers) {
+        int total = 0;
+        for (Integer number : numbers) {
             total += number;
         }
         return total;

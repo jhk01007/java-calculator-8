@@ -1,6 +1,5 @@
 package calculator;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,6 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class NumberParserTest {
 
@@ -23,11 +21,11 @@ class NumberParserTest {
         Set<String> delimiters = Set.of(",", ":", ";");
 
         // when
-        List<Double> results = numberParser.parseNumbers(str, delimiters);
+        List<Integer> results = numberParser.parseNumbers(str, delimiters);
 
         // then
         assertThat(results).hasSize(4)
-                .containsExactlyInAnyOrder(1.0, 2.0, 3.0, 4.0);
+                .containsExactlyInAnyOrder(1, 2, 3, 4);
     }
 
     @Test

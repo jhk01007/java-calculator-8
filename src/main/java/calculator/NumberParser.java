@@ -12,7 +12,7 @@ public class NumberParser {
      * @param delimiters - 구분자 셋
      * @return - 추출된 숫자 리스트
      */
-    public List<Double> parseNumbers(String str, Set<String> delimiters) {
+    public List<Integer> parseNumbers(String str, Set<String> delimiters) {
 
         // 각 구분자를 통일
         for (String delimiter : delimiters) {
@@ -23,7 +23,7 @@ public class NumberParser {
         String[] parsedNumbers = str.split(" ");
 
         // 뽑아낸 숫자들을 Double로 형 변환
-        List<Double> convertedNumbers = new ArrayList<>();
+        List<Integer> convertedNumbers = new ArrayList<>();
         for (int i = 0; i < parsedNumbers.length; i++) {
             convertedNumbers.add(convertStringToNumber(parsedNumbers[i]));
         }
@@ -36,9 +36,9 @@ public class NumberParser {
      * @param number - 변환할 문자열
      * @return - 변환된 숫자
      */
-    private double convertStringToNumber(String number) {
+    private int convertStringToNumber(String number) {
         try {
-            double num = Double.parseDouble(number);
+            int num = Integer.parseInt(number);
 
             // 양수인지 검증
             validatePositiveNumber(num);
@@ -54,7 +54,7 @@ public class NumberParser {
      * 해당 숫자가 양수인지 검증
      * @param num - 검증할 숫자
      */
-    private void validatePositiveNumber(double num) {
+    private void validatePositiveNumber(int num) {
         if (num <= 0) {
             throw new IllegalArgumentException("양수만 가능합니다.");
         }
