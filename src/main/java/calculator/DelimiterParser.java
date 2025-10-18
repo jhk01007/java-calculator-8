@@ -1,13 +1,16 @@
 package calculator;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * 문자열에서 구분자를 추출하는 클래스
  */
 public class DelimiterParser {
 
-    private static final String CUSTOM_DELIMITER_REGEX = "^//.+\\\\n.*"; // 커스텀 구분자 정규표현식
+    private static final String PREFIX = "//";
+    private static final String SUFFIX = "\\n";
+    private static final String CUSTOM_DELIMITER_REGEX = "^" + Pattern.quote(PREFIX) + ".+" +  Pattern.quote(SUFFIX) + ".*"; // 커스텀 구분자 정규표현식
 
     /**
      * 커스텀 구분자를 추출하는 메서드
@@ -18,7 +21,7 @@ public class DelimiterParser {
 
         // 커스텀 구분자를 추가하는 입력값이라면 (정규 표현식 활용)
         if (str.matches(CUSTOM_DELIMITER_REGEX)) {
-            String customDelimiter = str.substring(2, str.indexOf("\\n", 3)); // 커스텀 구분자 추출
+            String customDelimiter = str.substring(2, str.indexOf(SUFFIX, 3)); // 커스텀 구분자 추출
 
             validateCustomDelimiterIsNotNumber(customDelimiter); // 커스텀 구분자가 숫자인지 검증
 //            validateCustomDelimiterIsNotDot(customDelimiter); // 커스텀 구분자가 마침표(.)인지 검증
@@ -36,7 +39,7 @@ public class DelimiterParser {
      */
     public String removeCustomDelimiterPrefix(String str) {
         return str.matches(CUSTOM_DELIMITER_REGEX) ?
-                str.substring(str.indexOf("\\n", 3) + 2) : str;
+                str.substring(str.indexOf(SUFFIX, 3) + 2) : str;
     }
 
 //    /**
