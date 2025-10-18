@@ -14,13 +14,11 @@ public class NumberParser {
      */
     public List<Integer> parseNumbers(String str, Set<String> delimiters) {
 
-        // 각 구분자를 통일
-        for (String delimiter : delimiters) {
-            str = str.replace(delimiter, " ");
-        }
+        // 구분자들을 정규표현식으로 변환
+        String delimiterRegex = String.join("|", delimiters);
 
         // 숫자들만 뽑아냄
-        String[] parsedNumbers = str.split(" ", -1);
+        String[] parsedNumbers = str.split(delimiterRegex, -1);
 
         // 뽑아낸 숫자들을 Double로 형 변환
         List<Integer> convertedNumbers = new ArrayList<>();

@@ -70,6 +70,19 @@ class ApplicationTest extends NsTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
+    @Test
+    @DisplayName("숫자가 누락되는 경우 예외발생")
+    void test_fail_3() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1,2,"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1,,2"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
 
     @Override
     public void runMain() {

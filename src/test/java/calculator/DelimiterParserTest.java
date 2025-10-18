@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -25,7 +26,7 @@ class DelimiterParserTest {
 
         // then
         assertThat(result.isPresent()).isTrue();
-        assertThat(result.get()).isEqualTo(":");
+        assertThat(result.get()).isEqualTo(Pattern.quote(":"));
     }
 
     @Test

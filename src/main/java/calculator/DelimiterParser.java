@@ -26,7 +26,7 @@ public class DelimiterParser {
             validateCustomDelimiterIsNotNumber(customDelimiter); // 커스텀 구분자가 숫자인지 검증
 //            validateCustomDelimiterIsNotDot(customDelimiter); // 커스텀 구분자가 마침표(.)인지 검증
 
-            return Optional.of(customDelimiter);
+            return Optional.of(Pattern.quote(customDelimiter)); // 문자그대로 입력되도록 이스케이프 처리
         } else {
             return Optional.empty();
         }

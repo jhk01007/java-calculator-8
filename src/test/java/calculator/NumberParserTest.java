@@ -53,4 +53,21 @@ class NumberParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력값이 잘못됐거나 지정된 구분자외에 다른 구분자는 사용할 수 없습니다.");
     }
+
+    @Test
+    @DisplayName("문자열에 숫자가 누락되는 경우 에러가 발생한다.")
+    public void parseNumbers_fail_3() throws Exception {
+        // given
+        String str1 = "1:2:";
+        String str2 = "1::2";
+        Set<String> delimiters = Set.of(",", ":");
+
+        // when // then
+        assertThatThrownBy(() -> numberParser.parseNumbers(str1, delimiters))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("빈 피연산자가 포함되어 있습니다.");
+        assertThatThrownBy(() -> numberParser.parseNumbers(str2, delimiters))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("빈 피연산자가 포함되어 있습니다.");
+    }
 }
