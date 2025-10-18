@@ -20,7 +20,7 @@ public class NumberParser {
         }
 
         // 숫자들만 뽑아냄
-        String[] parsedNumbers = str.split(" ");
+        String[] parsedNumbers = str.split(" ", -1);
 
         // 뽑아낸 숫자들을 Double로 형 변환
         List<Integer> convertedNumbers = new ArrayList<>();
@@ -37,6 +37,11 @@ public class NumberParser {
      * @return - 변환된 숫자
      */
     private int convertStringToNumber(String number) {
+
+        if(number.isEmpty()) {
+            throw new IllegalArgumentException("빈 피연산자가 포함되어 있습니다.");
+        }
+
         try {
             int num = Integer.parseInt(number);
 
