@@ -1,11 +1,15 @@
 package calculator;
 
+import java.math.BigInteger;
 import java.util.*;
 
 /**
  * 문자열에서 숫자를 추출하는 클래스
  */
 public class NumberParser {
+
+    private static final BigInteger MAX_NUMBER = BigInteger.valueOf(Integer.MAX_VALUE);
+
     /**
      * 문자열로부터 구분자를 제거하고 숫자만 반환
      * @param str - 계산할 문자열
@@ -20,7 +24,7 @@ public class NumberParser {
         // 숫자들만 뽑아냄
         String[] parsedNumbers = str.split(delimiterRegex, -1);
 
-        // 뽑아낸 숫자들을 Double로 형 변환
+        // 뽑아낸 숫자들을 int로 형 변환
         List<Integer> convertedNumbers = new ArrayList<>();
         for (int i = 0; i < parsedNumbers.length; i++) {
             convertedNumbers.add(convertStringToNumber(parsedNumbers[i]));
@@ -41,6 +45,10 @@ public class NumberParser {
         }
 
         try {
+            // 해당 숫자가 오버플로우 되는지 검증
+            validateNumberOverflow(number);
+
+            // int로 변환
             int num = Integer.parseInt(number);
 
             // 양수인지 검증
@@ -55,11 +63,22 @@ public class NumberParser {
 
     /**
      * 해당 숫자가 양수인지 검증
-     * @param num - 검증할 숫자
+     * @param number - 검증할 숫자
      */
-    private void validatePositiveNumber(int num) {
-        if (num <= 0) {
+    private void validatePositiveNumber(int number) {
+        if (number <= 0) {
             throw new IllegalArgumentException("양수만 가능합니다.");
+        }
+    }
+
+    /**
+     * 해당 숫자가 오버플로우 나는지 검증
+     * @param number - 검증할 숫자
+     */
+    private void validateNumberOverflow(String number) {
+        BigInteger bi = new BigInteger(number);
+        if(bi.compareTo(MAX_NUMBER) > 0) {
+            throw new IllegalArgumentException("입력된 숫자가 너무 큽니다.");
         }
     }
 }

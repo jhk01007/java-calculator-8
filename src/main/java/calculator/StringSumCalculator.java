@@ -41,7 +41,11 @@ public class StringSumCalculator {
         // 계산
         int total = 0;
         for (Integer number : numbers) {
-            total += number;
+            try {
+                total = Math.addExact(total, number);
+            } catch (ArithmeticException e) {
+                throw new IllegalArgumentException("계산결과가 너무 큽니다.");
+            }
         }
         return total;
     }

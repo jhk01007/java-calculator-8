@@ -55,6 +55,15 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("커스텀 구분자로 '-' 사용")
+    void test_success_6() {
+        assertSimpleTest(() -> {
+            run("//-\\n1-2");
+            assertThat(output()).contains("결과 : 3");
+        });
+    }
+
+    @Test
     void test_fail_1() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("-1,2,3"))
@@ -82,6 +91,16 @@ class ApplicationTest extends NsTest {
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
+    @Test
+    @DisplayName("커스텀 구분자가 '-'이고 숫자 중 음수가 있으면 숫자가 누락됐다는 예외발생")
+    void test_fail_4() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("//-\\n1--2-3--4"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage("빈 피연산자가 포함되어 있습니다.")
+        );
+    }
+
 
 
     @Override
