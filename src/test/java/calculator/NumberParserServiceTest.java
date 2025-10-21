@@ -1,6 +1,6 @@
 package calculator;
 
-import calculator.model.NumberParser;
+import calculator.model.NumberParserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +10,9 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class NumberParserTest {
+class NumberParserServiceTest {
 
-    NumberParser numberParser = new NumberParser();
+    NumberParserService numberParserService = new NumberParserService();
 
     @Test
     @DisplayName("문자열로부터 구분자를 제거하고 숫자만 반환한다.")
@@ -22,7 +22,7 @@ class NumberParserTest {
         Set<String> delimiters = Set.of(",", ":", ";");
 
         // when
-        List<Integer> results = numberParser.parseNumbers(str, delimiters);
+        List<Integer> results = numberParserService.parseNumbers(str, delimiters);
 
         // then
         assertThat(results).hasSize(4)
@@ -37,7 +37,7 @@ class NumberParserTest {
         Set<String> delimiters = Set.of(",", ":", ";");
 
         // when // then
-        assertThatThrownBy(() -> numberParser.parseNumbers(str, delimiters))
+        assertThatThrownBy(() -> numberParserService.parseNumbers(str, delimiters))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("양수만 가능합니다.");
     }
@@ -50,7 +50,7 @@ class NumberParserTest {
         Set<String> delimiters = Set.of(",", ":");
 
         // when // then
-        assertThatThrownBy(() -> numberParser.parseNumbers(str, delimiters))
+        assertThatThrownBy(() -> numberParserService.parseNumbers(str, delimiters))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("입력값이 잘못됐거나 지정된 구분자외에 다른 구분자는 사용할 수 없습니다.");
     }
@@ -64,10 +64,10 @@ class NumberParserTest {
         Set<String> delimiters = Set.of(",", ":");
 
         // when // then
-        assertThatThrownBy(() -> numberParser.parseNumbers(str1, delimiters))
+        assertThatThrownBy(() -> numberParserService.parseNumbers(str1, delimiters))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("빈 피연산자가 포함되어 있습니다.");
-        assertThatThrownBy(() -> numberParser.parseNumbers(str2, delimiters))
+        assertThatThrownBy(() -> numberParserService.parseNumbers(str2, delimiters))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("빈 피연산자가 포함되어 있습니다.");
     }

@@ -10,13 +10,13 @@ public class StringSumCalculatorFacade {
     private static final List<String> DEFAULT_DELIMITER_LIST = List.of(",", ":"); // 콤마와 콜론은 미리 초기화
 
     private final DelimiterParser delimiterParser;
-    private final NumberParser numberParser;
-    private final Calculator calculator;
+    private final NumberParserService numberParserService;
+    private final CalculatorService calculatorService;
 
-    public StringSumCalculatorFacade(DelimiterParser delimiterParser, NumberParser numberParser, Calculator calculator) {
+    public StringSumCalculatorFacade(DelimiterParser delimiterParser, NumberParserService numberParserService, CalculatorService calculatorService) {
         this.delimiterParser = delimiterParser;
-        this.numberParser = numberParser;
-        this.calculator = calculator;
+        this.numberParserService = numberParserService;
+        this.calculatorService = calculatorService;
     }
 
     /**
@@ -38,10 +38,10 @@ public class StringSumCalculatorFacade {
             delimiters.add(customDelimiter.get()); // 커스텀 구분자 추가
         }
 
-        List<Integer> numbers = numberParser.parseNumbers(input, delimiters); // 숫자만 추출
+        List<Integer> numbers = numberParserService.parseNumbers(input, delimiters); // 숫자만 추출
 
         // 계산
-        return calculator.sum(numbers);
+        return calculatorService.sum(numbers);
     }
 
 }

@@ -2,7 +2,7 @@ package calculator.model;
 
 import java.util.List;
 
-public class Calculator {
+public class CalculatorService {
 
     public int sum(List<Integer> numbers) {
         int total = 0;

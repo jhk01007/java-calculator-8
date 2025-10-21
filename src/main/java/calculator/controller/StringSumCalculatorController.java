@@ -4,13 +4,13 @@ import calculator.view.InputView;
 import calculator.view.OutputView;
 import calculator.model.StringSumCalculatorFacade;
 
-public class CalculatorController {
+public class StringSumCalculatorController {
 
     private final InputView inputView;
     private final StringSumCalculatorFacade stringSumCalculatorFacade;
     private final OutputView outputView;
 
-    public CalculatorController(InputView inputView, StringSumCalculatorFacade stringSumCalculatorFacade, OutputView outputView) {
+    public StringSumCalculatorController(InputView inputView, StringSumCalculatorFacade stringSumCalculatorFacade, OutputView outputView) {
         this.inputView = inputView;
         this.stringSumCalculatorFacade = stringSumCalculatorFacade;
         this.outputView = outputView;

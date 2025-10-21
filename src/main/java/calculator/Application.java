@@ -1,10 +1,10 @@
 package calculator;
 
 
-import calculator.controller.CalculatorController;
-import calculator.model.Calculator;
+import calculator.controller.StringSumCalculatorController;
+import calculator.model.CalculatorService;
 import calculator.model.DelimiterParser;
-import calculator.model.NumberParser;
+import calculator.model.NumberParserService;
 import calculator.model.StringSumCalculatorFacade;
 import calculator.view.InputView;
 import calculator.view.OutputView;
@@ -16,12 +16,12 @@ public class Application {
         OutputView outputView = new OutputView();
 
         DelimiterParser delimiterParser = new DelimiterParser();
-        NumberParser numberParser = new NumberParser();
-        Calculator calculator = new Calculator();
+        NumberParserService numberParserService = new NumberParserService();
+        CalculatorService calculatorService = new CalculatorService();
 
-        StringSumCalculatorFacade stringSumCalculatorFacade = new StringSumCalculatorFacade(delimiterParser, numberParser, calculator);
+        StringSumCalculatorFacade stringSumCalculatorFacade = new StringSumCalculatorFacade(delimiterParser, numberParserService, calculatorService);
 
-        CalculatorController calculatorController = new CalculatorController(inputView, stringSumCalculatorFacade, outputView);
-        calculatorController.start();
+        StringSumCalculatorController stringSumCalculatorController = new StringSumCalculatorController(inputView, stringSumCalculatorFacade, outputView);
+        stringSumCalculatorController.start();
     }
 }

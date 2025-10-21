@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 문자열에서 숫자를 추출하는 클래스
  */
-public class NumberParser {
+public class NumberParserService {
 
     private static final BigInteger MAX_NUMBER = BigInteger.valueOf(Integer.MAX_VALUE);
 
