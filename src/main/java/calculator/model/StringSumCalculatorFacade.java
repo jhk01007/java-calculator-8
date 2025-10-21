@@ -1,20 +1,22 @@
-package calculator;
+package calculator.model;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-public class StringSumCalculator {
+public class StringSumCalculatorFacade {
 
     private static final List<String> DEFAULT_DELIMITER_LIST = List.of(",", ":"); // 콤마와 콜론은 미리 초기화
 
     private final DelimiterParser delimiterParser;
     private final NumberParser numberParser;
+    private final Calculator calculator;
 
-    public StringSumCalculator() {
-        delimiterParser = new DelimiterParser();
-        numberParser = new NumberParser();
+    public StringSumCalculatorFacade(DelimiterParser delimiterParser, NumberParser numberParser, Calculator calculator) {
+        this.delimiterParser = delimiterParser;
+        this.numberParser = numberParser;
+        this.calculator = calculator;
     }
 
     /**
@@ -39,15 +41,7 @@ public class StringSumCalculator {
         List<Integer> numbers = numberParser.parseNumbers(input, delimiters); // 숫자만 추출
 
         // 계산
-        int total = 0;
-        for (Integer number : numbers) {
-            try {
-                total = Math.addExact(total, number);
-            } catch (ArithmeticException e) {
-                throw new IllegalArgumentException("계산결과가 너무 큽니다.");
-            }
-        }
-        return total;
+        return calculator.sum(numbers);
     }
 
 }

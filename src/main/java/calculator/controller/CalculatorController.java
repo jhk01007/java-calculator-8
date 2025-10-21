@@ -2,7 +2,7 @@ package calculator.controller;
 
 import calculator.view.InputView;
 import calculator.view.OutputView;
-import calculator.StringSumCalculatorFacade;
+import calculator.model.StringSumCalculatorFacade;
 
 public class CalculatorController {
 

@@ -1,5 +1,6 @@
 package calculator;
 
+import calculator.model.NumberParser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
